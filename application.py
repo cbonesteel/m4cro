@@ -33,14 +33,21 @@ def index():
         person_number += 'th'
     return render_template('index.html', person_number=person_number)
     
-@app.route('/something/<thing>')
-def thing(thing):
-    return 'Wow! What a {}!'.format(thing)
-
 @app.route('/start')
 def start():
     return render_template('start.html')
+
     
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+    
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
