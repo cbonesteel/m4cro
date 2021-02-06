@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-green.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <title>M4cro</title>
+</head>
+<!-- Uses a transparent header that draws on top of the layout's background -->
+<style>
+.demo-layout-transparent {
+  background: url('../assets/demos/transparent.jpg') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+</style>
+
+<style>
+  body {
+    background-color: black;
+  }
+  .bg-image {
+      position: absolute;
+      background-repeat: no-repeat;
+      left: 0;
+      top: 0;
+      background-image: url( 'https://images.pexels.com/photos/841131/pexels-photo-841131.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' );
+      width: 100%;
+      height: 100%;
+      -webkit-filter: blur(5px);
+      -moz-filter: blur(5px);
+      -o-filter: blur(5px);
+      -ms-filter: blur(5px);
+      filter: blur(5px);
+      background-size: cover;
+      z-index: -1;
+  } 
+
+  .mdl-textfield__label {
+    color: #999;
+    text-align: center;
+  }
+
+  .mdl-textfield__input {
+    text-align: center;
+    font-size:40px;
+    color:#AAA;
+    border-bottom: 1px solid #888;
+  }
+
+  .mdl-textfield{
+    width:90px
+  }
+
+  .mdl-textfield__error {
+    text-align: center;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .mdl-layout__content {
+      margin-left: auto;
+      margin-right: auto;
+      width: 80em;
+      color: white;
+      min-height:85%;
+  } 
+
+  .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;  /* Preferred icon size */
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      
+      /* Support for all WebKit browsers. */
+      -webkit-font-smoothing: antialiased;
+      /* Support for Safari and Chrome. */
+      text-rendering: optimizeLegibility;
+      
+      /* Support for Firefox. */
+      -moz-osx-font-smoothing: grayscale;
+      
+      /* Support for IE. */
+      font-feature-settings: 'liga';
+  }
+
+  .mdl-mini-footer {
+      height: 50px;
+      margin-top: -50px;
+  }
+</style>
+<div class="bg-image"></div>
+<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--transparent">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">m4cro</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="/">Home</a>
+        <a class="mdl-navigation__link" href="/start">Start</a>
+        <a class="mdl-navigation__link" href="/login">Log In</a>
+        <a class="mdl-navigation__link" href="/register">Register</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Title</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="/">Home</a>
+      <a class="mdl-navigation__link" href="/start">Start</a>
+      <a class="mdl-navigation__link" href="/login">Log In</a>
+      <a class="mdl-navigation__link" href="/register">Register</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <!-- Simple Textfield -->
+    <form action="#">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="sample1">
+        <label class="mdl-textfield__label" for="sample1">Text...</label>
+      </div>
+    </form>
+    
+    
+  </main>
+  
+  <!-- Footer -->
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__left-section">
+      <div class="mdl-logo">m4acro</div>
+      <ul class="mdl-mini-footer__link-list">
+        <li><a href="/aboutus">About Us</a></li>
+        <li><a href="/login">Log In</a></li>
+        <li><a href="/register">Register</a></li>
+      </ul>
+    </div>
+    <div class="mdl-mini-footer__right-section">
+      <a href="https://github.com/cbonesteel/m4cro"><img src="/static/GitHub-Mark-64px.png" alt="GitHub" height="30" width="30"></a>
+    </div>
+  </footer>
+</div>
+<body>
+  
+</body>
+
+</div>
+
+</html>
