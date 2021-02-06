@@ -9,7 +9,7 @@ auth_provider = PlainTextAuthProvider('m4cro', 'M@VnDu2D7#tc')
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
 session = cluster.connect()
 
-print('Conencted to DataStax')
+print('Connected to DataStax')
 
 number = session.execute('select number from userdata.website where id = \'people\';').one()[0]
 
@@ -35,7 +35,7 @@ def index():
     
 @app.route('/something/<thing>')
 def thing(thing):
-    return 'Wow! What a %s!'.format(thing)
+    return 'Wow! What a {}!'.format(thing)
 
 @app.route('/start')
 def start():
