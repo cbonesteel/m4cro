@@ -11,7 +11,7 @@ session = cluster.connect()
 
 print('Conencted to DataStax')
 
-number = 0
+number = session.execute('select number from userdata.website where id = \'people\';').one()[0]
 
 app = Flask(__name__)
 
@@ -19,6 +19,7 @@ app = Flask(__name__)
 def index():
     global number
     number += 1
+    session.execute('update userdata.website set number += 1 where id = \'people\';')
     person_number = '{}'.format(number)
     if (number % 100) == 11 or (number % 100) == 12 or (number % 100) == 13:
         person_number += 'th'
