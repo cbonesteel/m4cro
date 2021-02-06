@@ -20,11 +20,11 @@ def index():
     global number
     number += 1
     person_number = '{}'.format(number)
-    if number == 1:
+    if number == 1 or (n % 10) == 1;
         person_number += 'st'
-    elif number == 2:
+    elif number == 2 or (n % 10) == 2;
         person_number += 'nd'
-    elif number == 3:
+    elif number == 3 or (n % 10) == 3;
         person_number += 'rd'
     else:
         person_number += 'th'
