@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://m4cro.space/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://m4cro.space/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://m4cro.space/MaterialIcons-Regular.woff) format('woff'),
+    url(https://m4cro.space/MaterialIcons-Regular.ttf) format('truetype');
+}

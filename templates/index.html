@@ -66,21 +66,59 @@
     right: 0;
     text-align: center;
   }
+
+  .mdl-layout__content {
+      margin-left: auto;
+      margin-right: auto;
+      width: 80em;
+      color: white;
+      min-height:85%;
+  } 
+
+  .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;  /* Preferred icon size */
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      
+      /* Support for all WebKit browsers. */
+      -webkit-font-smoothing: antialiased;
+      /* Support for Safari and Chrome. */
+      text-rendering: optimizeLegibility;
+      
+      /* Support for Firefox. */
+      -moz-osx-font-smoothing: grayscale;
+      
+      /* Support for IE. */
+      font-feature-settings: 'liga';
+  }
+
+  .mdl-mini-footer {
+      height: 50px;
+      margin-top: -50px;
+  }
 </style>
 <div class="bg-image"></div>
 <div class="demo-layout-transparent mdl-layout mdl-js-layout">
   <header class="mdl-layout__header mdl-layout__header--transparent">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <span class="mdl-layout-title">Title</span>
+      <span class="mdl-layout-title">m4cro</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation -->
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="/">Home</a>
         <a class="mdl-navigation__link" href="/start">Start</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="/login">Log In</a>
+        <a class="mdl-navigation__link" href="/register">Register</a>
       </nav>
     </div>
   </header>
@@ -89,21 +127,38 @@
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="/">Home</a>
       <a class="mdl-navigation__link" href="/start">Start</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="/login">Log In</a>
+      <a class="mdl-navigation__link" href="/register">Register</a>
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <h1>Welcome to m4cro</h1>
+    <h1>Welcome to m4cro!</h1>
     You are the {{ person_number }} person to view this website!
-    <h2>What is M4cro</h2>
-    M4cro is a free web application that helps you pick meals from resteraunts
+    <h2>What is m4cro?</h2>
+    m4cro is a free web application that helps you pick meals from resteraunts
     in your local area in order to stay in the confines of your diet. You simply
     enter your nutritional information and our database and connected apis
     {# change later to be more specific #} will generate a list of meals from
     local resteraunts that fit into your diet and give you estimated travel
     times to those resteraunts.
+
+    
   </main>
+  
+  <!-- Footer -->
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__left-section">
+      <div class="mdl-logo">m4acro</div>
+      <ul class="mdl-mini-footer__link-list">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Log In</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </div>
+    <div class="mdl-mini-footer__right-section">
+      <li><a href="https://github.com/cbonesteel/m4cro"><img src="/static/GitHub-Mark-64px.png" alt="GitHub" height="30" width="30"></a></li>
+    </div>
+  </footer>
 </div>
 <body>
   
