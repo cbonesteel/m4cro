@@ -94,15 +94,14 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <h1>Welcome to m4cro</h1>
-    You are the {{ person_number }} person to view this website!
-    <h2>What is M4cro</h2>
-    M4cro is a free web application that helps you pick meals from resteraunts
-    in your local area in order to stay in the confines of your diet. You simply
-    enter your nutritional information and our database and connected apis
-    {# change later to be more specific #} will generate a list of meals from
-    local resteraunts that fit into your diet and give you estimated travel
-    times to those resteraunts.
+    <!-- Numeric Textfield -->
+    <form action="#">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
+        <label class="mdl-textfield__label" for="sample2"></label>
+        <span class="mdl-textfield__error">Enter a Number</span>
+      </div>
+    </form>
   </main>
 </div>
 <body>

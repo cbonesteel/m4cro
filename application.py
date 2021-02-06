@@ -36,6 +36,10 @@ def index():
 @app.route('/something/<thing>')
 def thing(thing):
     return 'Wow! What a %s!'.format(thing)
+
+@app.route('/start')
+def start():
+    return render_template('start.html')
     
 @app.errorhandler(404)
 def page_not_found(error):
