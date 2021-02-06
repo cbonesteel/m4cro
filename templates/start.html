@@ -20,6 +20,21 @@
 }
 </style>
 
+<script>
+    function calculateCalories() {
+        var c = parseInt(document.getElementById("carb-input").value)
+        if (isNaN(c)) c = 0;
+        
+        var f = parseInt(document.getElementById("fat-input").value)
+        if (isNaN(f)) f = 0;
+
+        var p = parseInt(document.getElementById("protein-input").value)
+        if (isNaN(p)) p = 0;
+
+        document.getElementById("kcals").innerHTML = 4*c + 9*f + 9*p
+    }
+</script>
+
 <style>
   body {
     background-color: black;
@@ -41,20 +56,28 @@
       z-index: -1;
   } 
 
-  .mdl-textfield__label {
-    color: #999;
-    text-align: center;
-  }
+  .mdl-layout__content {
+      margin-left: auto;
+      margin-right: auto;
+      width: 80em;
+      color: white;
+      min-height:85%;
+  } 
 
   .mdl-textfield__input {
     text-align: center;
     font-size:40px;
-    color:#AAA;
-    border-bottom: 1px solid #888;
+    color:#FFF;
+    font-weight: lighter;
+    border-bottom: 1px solid #FFF;
   }
 
   .mdl-textfield{
-    width:90px
+    width:90px;
+    margin: 0 auto;
+    left:55px;
+    right:55px;
+    top:35px
   }
 
   .mdl-textfield__error {
@@ -66,45 +89,191 @@
     right: 0;
     text-align: center;
   }
+
+  .bounding-box {
+      margin: 0 auto;
+      width: 640px;
+      height: 200px;
+      text-align: justify;
+      position:relative;
+      top:200px;
+  }
+
+  .carb-box {
+      width: 200px;
+      height:200px;
+      background: #00798C;
+      float:left;
+      z-index:0;
+  }
+
+  .fat-box {
+      width: 200px;
+      height:200px;
+      background: #30638E;
+      display:inline-block;
+      margin-left:auto;
+      margin-right:auto;
+      left:20px
+  }
+
+  .protein-box {
+      width: 200px;
+      height:200px;
+      background: #003D5B;
+      float:right;
+      z-index:0;
+  }
+
+  #submit {
+      position: relative;
+      top:15px;
+      width: 640px;
+      color: white;
+      background-color:#D1495B; 
+      margin-left:auto;
+      margin-right:auto;
+  }
+
+  #calories {
+      position: relative;
+      top:15px;
+      width: 640px;
+      color: black;
+      height: 50px;
+      background-color:#edae49; 
+      margin-left:auto;
+      margin-right:auto;
+  }
+
+  .macro-label {
+      color:white;
+      text-align:center;
+      position:absolute;
+      margin-left:auto;
+      margin-right:auto;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      font-size:20px;
+      font-weight: lighter;
+  }
+
+  .unit-label {
+      color:white;
+      text-align:center;
+      position:absolute;
+      top:75px;
+      right:20px;
+      font-size:40px;
+      font-weight: lighter;
+  }
+
+  .mdl-mini-footer {
+      height: 50px;
+      margin-top: -50px;
+  }
+
 </style>
 <div class="bg-image"></div>
 <div class="demo-layout-transparent mdl-layout mdl-js-layout">
-  <header class="mdl-layout__header mdl-layout__header--transparent">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title">Title</span>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation -->
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/">Home</a>
-        <a class="mdl-navigation__link" href="/start">Start</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-      </nav>
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Title</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="/">Home</a>
-      <a class="mdl-navigation__link" href="/start">Start</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-    </nav>
-  </div>
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">m4cro</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/">Home</a>
+            <a class="mdl-navigation__link" href="/start">Start</a>
+            <a class="mdl-navigation__link" href="/login">Log In</a>
+            <a class="mdl-navigation__link" href="/register">Register</a>
+            </nav>
+        </div>
+        </header>
+        <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/">Home</a>
+            <a class="mdl-navigation__link" href="/start">Start</a>
+            <a class="mdl-navigation__link" href="/login">Log In</a>
+            <a class="mdl-navigation__link" href="/register">Register</a>
+        </nav>
+        </div>
   <main class="mdl-layout__content">
-    <!-- Numeric Textfield -->
-    <form action="#">
-      <div class="mdl-textfield mdl-js-textfield">
-        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
-        <label class="mdl-textfield__label" for="sample2"></label>
-        <span class="mdl-textfield__error">Enter a Number</span>
-      </div>
-    </form>
+    <div class="bounding-box">
+
+        <div class="mdl-card mdl-shadow--2dp carb-box">
+            <!-- Numeric Textfield -->
+            <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="carb-input" onkeyup="calculateCalories()">
+                <label class="mdl-textfield__label" for="carb-input"></label>
+                <span class="mdl-textfield__error">Enter a Number</span>
+                </div>
+            </form>
+
+            <span class="macro-label">Carbs</span>
+            <span class="unit-label">g</span>
+        </div>
+
+        <div class="mdl-card mdl-shadow--2dp fat-box">
+            <!-- Numeric Textfield -->
+            <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="fat-input" onkeyup="calculateCalories()">
+                <label class="mdl-textfield__label" for="fat-input"></label>
+                <span class="mdl-textfield__error">Enter a Number</span>
+                </div>
+            </form>
+
+            <span class="macro-label">Fat</span>
+            <span class="unit-label">g</span>
+        </div>
+
+        <div class="mdl-card mdl-shadow--2dp protein-box">
+            <!-- Numeric Textfield -->
+            <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="protein-input" onkeyup="calculateCalories()">
+                <label class="mdl-textfield__label" for="protein-input"></label>
+                <span class="mdl-textfield__error">Enter a Number</span>
+                </div>
+            </form>
+
+            <span class="macro-label">Protein</span>
+            <span class="unit-label">g</span>
+        </div>
+
+        <!-- Raised button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-shadow--2dp" id="calories" disabled>
+            Total Calories: <span id="kcals">0</span>
+        </button>
+        <br><br>
+        <!-- Raised button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit">
+            <i class="material-icons">done</i>
+        </button>
+    </div>
   </main>
+
+  <!-- Footer -->
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__left-section">
+      <div class="mdl-logo">m4acro</div>
+      <ul class="mdl-mini-footer__link-list">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Log In</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </div>
+    <div class="mdl-mini-footer__right-section">
+      <a href="https://github.com/cbonesteel/m4cro"><img src="/static/GitHub-Mark-64px.png" alt="GitHub" height="30" width="30"></a>
+    </div>
+  </footer>
 </div>
-<body>
+<body onload="calculateCalories()">
   
 </body>
 
