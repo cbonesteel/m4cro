@@ -1,4 +1,15 @@
 from flask import Flask, render_template
+from cassandra.cluster import Cluster
+from cassandra.auth import PlainTextAuthProvider
+
+cloud_config = {
+    'secure_connect_bundle': './secure-connect-m4cro-database.zip'
+}
+auth_provider = PlainTextAuthProvider('m4cro', 'M@VnDu2D7#tc')
+cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
+session = cluster.connect()
+
+print('Conencted to DataStax')
 
 number = 0
 
@@ -26,3 +37,7 @@ def thing(thing):
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
+    
+    
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80)
