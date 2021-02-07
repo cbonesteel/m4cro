@@ -20,4 +20,12 @@ CREATE TABLE IF NOT EXISTS restaurant.restaurants (
     items list<frozen<restaurant.item>>
 );
 ```
+
+
+### Insert a user
+```
+insert into userdata.users (email, password, firstname, lastname) values (
+    'cambones12@gmail.com', '12345', 'Cam', 'Bones'
+);
+```
     

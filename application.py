@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 import requests as req
+import re
 
 cloud_config = {
     'secure_connect_bundle': './secure-connect-m4cro-database.zip'
@@ -55,8 +56,8 @@ def login():
 def register():
     error = None
     if request.method == 'POST':
-        if valid_registration(request.form['username'], request.form['password'], request.form['firstname'], request.form['lastname']):
-            return user_login(request.form['username'])
+        if valid_registration(request.form['email'], request.form['password'], request.form['firstname'], request.form['lastname']):
+            return user_login(request.form['email'])
         else:
             error = 'Email already taken. Please use another email.'
     return render_template('register.html', error=error)
@@ -66,24 +67,18 @@ def register():
 def page_not_found(error):
     return render_template('404.html'), 404
 
-
-def valid_login(username, password):
-    
-    
-
-def valid_registration(username, password, firstname, lastname):
-    mycursor = mydb.cursor()
-    checkUsername = mycursor.execute('SELECT username FROM Userdata.users WHERE username = % (username)s', (username,))
-    if checkUsername = 0
-    	return false
-    else
-    	Userdata.users[username] = [password, firstname, lastname]
-    	return true
-
-def user_login(username):
+def valid_login(email, password):
     pass
 
-def user_login(username):
+def valid_registration(email, password, firstname, lastname):
+    global session
+    checkUsername = len(session.execute('SELECT email FROM userdata.users WHERE email = {}'.format(email)))
+    if checkUsername != 0:
+        session.execute('insert into userdata.users (email, password, firstname, lastname) values (\'{}\', \'{}\', \'{}\', \'{}\');'.format(username, password, firstname, lastname))
+        return True
+    return False
+
+def user_login(email):
     pass
 
 # city is a string, "Athens, GA" for example
@@ -95,8 +90,12 @@ def get_restaurants_in_city(city):
     # pertinent information for each restaurant: "name", "location", "menu_url"
     return restaurants
     
-def parse_menu(menu_pics):
-    pass
-    
+def parse_menu(restaurant):
+    # download menu images
+    content = requests.get(restaurant.menu_url).content
+    menu_images = re.findall('https:\\/\\/b\\.zmtcdn\\.com\\/data\\/menus\\/[0-9]*\\/[0-9]*\\/.*?\\.(png|jpg|jpeg)', content)
+    # TODO: more stuff
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
