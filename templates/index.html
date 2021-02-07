@@ -108,6 +108,24 @@
       height: 50px;
       margin-top: -50px;
   }
+
+  @keyframes first {
+    from {opacity:1;}
+    to {opacity:0;}
+  }
+
+  .first {
+    animation-delay: 3s;
+    animation-duration: 2s;
+    animation-name: first;
+    animation-fill-mode: forwards;
+  }
+
+  #four {
+    animation: none;
+  }
+
+  
 </style>
 <div class="bg-image"></div>
 <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -136,8 +154,9 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <h1>Welcome to m4cro!</h1>
-    You are the {{ person_number }} person to view this website!
+    <br><br><br>
+    <h1 style="text-align:center"><span class="first">Welcome to m</span><span id="four">4</span><span class="first">cro!</span></h1>
+    <h4 class="first" style="text-align:center">You are the {{ person_number }} person to view this website</h4>
     <!--
     <h2>What is m4cro?</h2>
     m4cro is a free web application that helps you pick meals from resteraunts
