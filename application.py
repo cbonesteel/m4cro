@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
+import requests as req
 
 cloud_config = {
     'secure_connect_bundle': './secure-connect-m4cro-database.zip'
@@ -11,6 +12,7 @@ session = cluster.connect()
 
 print('Connected to DataStax')
 
+zomato_headers = {'Accept': 'application/json', 'user-key':'8b3dc6c1a42f7efdc2da8c6dab9f8778'}
 number = session.execute('select number from userdata.website where id = \'people\';').one()[0]
 
 app = Flask(__name__)
@@ -51,7 +53,15 @@ def register():
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
+
+# city is a string, "Athens, GA" for example
+def get_restaurants_in_city(city):
+    global zomato_headers
+    city_id = req.get('https://developers.zomato.com/api/v2.1/cities?q={}'.format(city), headers=zomato_headers).json()['location_suggestions'][0]['id']
+    restaurants = req.get('https://developers.zomato.com/api/v2.1/search?entity_id={}&entity_type=city'.format(city_id), headers=zomato_headers).json()['restaurants']
     
+    # pertinent information for each restaurant: "name", "location", "menu_url"
+    return restaurants
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
