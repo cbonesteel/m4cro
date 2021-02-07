@@ -83,6 +83,9 @@ def valid_registration(username, password, firstname, lastname):
 def user_login(username):
     pass
 
+def user_login(username):
+    pass
+
 # city is a string, "Athens, GA" for example
 def get_restaurants_in_city(city):
     global zomato_headers
