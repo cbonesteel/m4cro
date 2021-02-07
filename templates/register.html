@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-green.min.css" />
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <title>m4cro</title>
+  <title>m4cro | Register</title>
 </head>
 <!-- Uses a transparent header that draws on top of the layout's background -->
 <style>
@@ -43,28 +43,7 @@
 
   .mdl-textfield__label {
     color: #999;
-    text-align: center;
-  }
-
-  .mdl-textfield__input {
-    text-align: center;
-    font-size:40px;
-    color:#AAA;
-    border-bottom: 1px solid #888;
-  }
-
-  .mdl-textfield{
-    width:90px
-  }
-
-  .mdl-textfield__error {
-    text-align: center;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    text-align: center;
+    text-align: left;
   }
 
   .mdl-layout__content {
@@ -100,6 +79,90 @@
       font-feature-settings: 'liga';
   }
 
+  .mdl-textfield__input {
+    text-align: left;
+    font-size:18px;
+    color:#FFF;
+    font-weight: lighter;
+    border-bottom: 1px solid #FFF;
+  }
+
+  .mdl-textfield{
+    width:260px;
+    margin: 0 auto;
+    left:20px;
+    right:20px;
+    top:45px
+  }
+
+  
+  .mdl-textfield__error {
+    text-align: center;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+
+  .bounding-box {
+      margin: 0 auto;
+      width: 640px;
+      height: 200px;
+      text-align: justify;
+      position:relative;
+      top:75px;
+  }
+
+  .error-bounding-box {
+      margin: 0 auto;
+      width: 640px;
+      height: 50px;
+      text-align: justify;
+      position:relative;
+      top:10px;
+  }
+  
+  .register-box {
+      width: 300px;
+      height:450px;
+      background: #778899;
+      margin-left:auto;
+      margin-right:auto;
+  }
+
+  #register {
+      position: relative;
+      top:50px;
+      width: 150px;
+      color: white;
+      background-color:#D1495B; 
+      margin-left:auto;
+      margin-right:auto;
+  }
+
+  .unit-label {
+      color:white;
+      text-align:center;
+      position:absolute;
+      margin-left:auto;
+      margin-right:auto;
+      left: 0;
+      right: 0;
+      top: 20px;
+      font-size:35px;
+      font-weight: lighter;
+  }
+
+   .mdl-chip {
+       position:relative;
+       background-color:#D1495B; 
+       left: 190px;
+       top: 145px;
+  }
+  
   .mdl-mini-footer {
       height: 50px;
       margin-top: -50px;
@@ -132,14 +195,56 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <!-- Simple Textfield -->
-    <form action="#">
-      <div class="mdl-textfield mdl-js-textfield">
-        <input class="mdl-textfield__input" type="text" id="sample1">
-        <label class="mdl-textfield__label" for="sample1">Text...</label>
+    <div class="bounding-box">
+      
+        <div class="mdl-card mdl-shadow--2dp register-box">
+        <span class="unit-label">Register</span>
+        <!-- Simple Textfield -->
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="firstname" required="true">
+            <label class="mdl-textfield__label" for="email">First Name</label>
+            <span class="mdl-textfield__error">This field is required.</span>
+          </div>
+        </form>
+        <!-- Simple Textfield -->
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="lastname" required="true">
+            <label class="mdl-textfield__label" for="email">Last Name</label>
+            <span class="mdl-textfield__error">This field is required.</span>
+          </div>
+        </form>
+        <!-- Simple Textfield -->
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="email" id="email" required="true">
+            <label class="mdl-textfield__label" for="email">Email</label>
+            <span class="mdl-textfield__error">Please enter a valid email address.</span>
+          </div>
+        </form>
+        <!-- Simple Textfield -->
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="password" id="password" required="true">
+            <label class="mdl-textfield__label" for="password">Password</label>
+            <span class="mdl-textfield__error">This field is required.</span>
+          </div>
+        </form>
+        <!-- Simple Textfield -->
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="password" id="confirm_password" required="true">
+            <label class="mdl-textfield__label" for="password">Confirm Password</label>
+            <span class="mdl-textfield__error">This field is required.</span>
+          </div>
+        </form>
+                
+        <!-- Raised button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="register">Register</button>
+
       </div>
-    </form>
-    
+    </div>
     
   </main>
   

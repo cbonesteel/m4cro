@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 import requests as req
@@ -40,19 +40,51 @@ def start():
     return render_template('start.html')
 
     
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    return render_template('login.html')
+    error = None
+    if request.method == 'POST':
+        if valid_login(request.form['email'], request.form['password']):
+            return user_login(request.form['email'])
+        else:
+            error = 'Invalid email/password'
+    return render_template('login.html', error=error)
 
     
-@app.route('/register')
+@app.route('/register', methods=['POST', 'GET'])
 def register():
-    return render_template('register.html')
+    error = None
+    if request.method == 'POST':
+        if valid_registration(request.form['username'], request.form['password'], request.form['firstname'], request.form['lastname']):
+            return user_login(request.form['username'])
+        else:
+            error = 'Email already taken. Please use another email.'
+    return render_template('register.html', error=error)
 
 
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
+
+
+def valid_login(username, password):
+    
+    
+
+def valid_registration(username, password, firstname, lastname):
+    mycursor = mydb.cursor()
+    checkUsername = mycursor.execute('SELECT username FROM Userdata.users WHERE username = % (username)s', (username,))
+    if checkUsername = 0
+    	return false
+    else
+    	Userdata.users[username] = [password, firstname, lastname]
+    	return true
+
+def user_login(username):
+    pass
+
+def user_login(username):
+    pass
 
 # city is a string, "Athens, GA" for example
 def get_restaurants_in_city(city):
@@ -62,6 +94,9 @@ def get_restaurants_in_city(city):
     
     # pertinent information for each restaurant: "name", "location", "menu_url"
     return restaurants
+    
+def parse_menu(menu_pics):
+    pass
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
