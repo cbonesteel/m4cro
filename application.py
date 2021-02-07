@@ -26,6 +26,8 @@ number = session.execute('select number from userdata.website where id = \'peopl
 
 app = Flask(__name__)
 
+displayName = 'guest'
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -44,7 +46,7 @@ def index():
     else:
         person_number += 'th'
     return render_template('index.html', person_number=person_number)
-    
+
 @app.route('/start')
 def start():
     return render_template('start.html')
@@ -55,18 +57,19 @@ def results():
     recommendations.append(recommendation("McDonalds", "10 min", "Chicken", "50", "20", "30", "500"))
     recommendations.append(recommendation("Burger King", "10 min", "Other Chicken", "40", "30", "28", "542"))
     return render_template('results.html', recommendations=recommendations)
-    
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     error = None
     if request.method == 'POST':
         if valid_login(request.form['email'], request.form['password']):
+            set = session.execute('SELECT firstname FROM userdata.users WHERE email = {}'.format(email)).one()
+            displayName = set[0]
             return user_login(request.form['email'])
         else:
             error = 'Invalid email/password'
     return render_template('login.html', error=error)
 
-    
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     error = None
@@ -76,7 +79,6 @@ def register():
         else:
             error = 'Email already taken. Please use another email.'
     return render_template('register.html', error=error)
-
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -99,7 +101,6 @@ def valid_registration(email, password, firstname, lastname):
 
 def user_login(email):
     pass
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
