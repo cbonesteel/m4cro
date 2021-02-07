@@ -116,15 +116,79 @@
 
   .first {
     animation-delay: 3s;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-name: first;
     animation-fill-mode: forwards;
   }
 
-  #four {
-    animation: none;
+  @keyframes fifth {
+    from {opacity:0;}
+    to {opacity:1;}
   }
 
+  .fifth {
+    animation-delay: 8.5s;
+    animation-duration: 2s;
+    animation-name: fifth;
+    animation-fill-mode: forwards;
+    opacity:0;
+  }
+
+  @keyframes sixth {
+    from {opacity:0;}
+    to {opacity:1;}
+  }
+
+  .sixth {
+    animation-delay: 10.5s;
+    animation-duration: 1.5s;
+    animation-name: sixth;
+    animation-fill-mode: forwards;
+    opacity:0;
+  }
+
+  @keyframes second {
+    0% {right: 0px}
+    100% {right: 130px}
+  }
+
+  @keyframes third {
+    0% {content: "4 E"}
+    4% {content: "4 El"}
+    8% {content: "4 Ele"}
+    12% {content: "4 Elem"}
+    16% {content: "4 Eleme"}
+    20% {content: "4 Elemen"}
+    24% {content: "4 Element"}
+    28% {content: "4 Elements"}
+    36% {content: "Carbs"}
+    50% {content: "Fats"}
+    64% {content: "Protein"}
+    78% {content: "Calories"}
+    90% {content: "Calories"}
+    100% {content: "m4cro"}
+  }
+
+  @keyframes fourth {
+    from {opacity: 1}
+    to {opacity: 0}
+  }
+
+  #four {
+    animation-delay: 4s;
+    animation-duration: 0.5s;
+    animation-name: second;
+    animation-fill-mode: forwards;
+    position:relative;
+  }
+
+  .third::before {
+    animation-delay: 4.5s;
+    animation-duration: 4s;
+    animation-name: third;
+    animation-fill-mode: forwards;
+    content: "4";
+  }
   
 </style>
 <div class="bg-image"></div>
@@ -155,8 +219,10 @@
   </div>
   <main class="mdl-layout__content">
     <br><br><br>
-    <h1 style="text-align:center"><span class="first">Welcome to m</span><span id="four">4</span><span class="first">cro!</span></h1>
+    <h1 style="text-align:center"><span class="first">Welcome to m</span><span class="third" id="four"></span><span class="first">cro!</span></h1>
     <h4 class="first" style="text-align:center">You are the {{ person_number }} person to view this website</h4>
+    <h4 class="fifth" style="text-align:center;position:relative;top:-70px">The basic building blocks of your nutrition.</h4>
+    <h5 class="sixth" style="text-align:center;position:relative;top:-70px">Register/Login, or start using m4cro as a guest.</h5>
     <!--
     <h2>What is m4cro?</h2>
     m4cro is a free web application that helps you pick meals from resteraunts
@@ -179,6 +245,14 @@
         <li><a href="/login">Log In</a></li>
         <li><a href="/register">Register</a></li>
       </ul>
+    </div>
+    <div style="width:800px">
+    m4cro is a free web application that helps you pick meals from restaurants
+    in your local area in order to stay in the confines of your diet. You simply
+    enter your desired macronutrient counts and our database and connected APIs
+    {# change later to be more specific #} will recommend a list of meals from
+    local resteraunts that fit your macros and give you estimated travel
+    times for pickup.
     </div>
     <div class="mdl-mini-footer__right-section">
       <a href="https://github.com/cbonesteel/m4cro"><img src="/static/GitHub-Mark-64px.png" alt="GitHub" height="30" width="30"></a>
