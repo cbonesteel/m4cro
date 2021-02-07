@@ -68,12 +68,17 @@ def page_not_found(error):
     return render_template('404.html'), 404
 
 def valid_login(email, password):
-    pass
+    global session
+    checkUser = len(session.execute('SELECT email FROM userdata.users WHERE email = {}'.format(email)))
+    checkPass = len(session.execute('SELECT password FROM userdata.users WHERE password = {}'.format(password)))
+    if checkUser != 0 && checkPass != 0:
+        return True
+    return False
 
 def valid_registration(email, password, firstname, lastname):
     global session
-    checkUsername = len(session.execute('SELECT email FROM userdata.users WHERE email = {}'.format(email)))
-    if checkUsername != 0:
+    checkEmail = len(session.execute('SELECT email FROM userdata.users WHERE email = {}'.format(email)))
+    if checkEmail != 0:
         session.execute('insert into userdata.users (email, password, firstname, lastname) values (\'{}\', \'{}\', \'{}\', \'{}\');'.format(username, password, firstname, lastname))
         return True
     return False
