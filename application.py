@@ -73,6 +73,9 @@ def valid_login(username, password):
 def valid_registration(username, password, firstname, lastname):
     return False
 
+def user_login(username):
+    pass
+
 # city is a string, "Athens, GA" for example
 def get_restaurants_in_city(city):
     global zomato_headers
