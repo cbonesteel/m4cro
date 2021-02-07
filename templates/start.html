@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-green.min.css" />
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <title>m4cro</title>
+  <title>m4cro | Start</title>
 </head>
 <!-- Uses a transparent header that draws on top of the layout's background -->
 <style>
@@ -31,7 +31,7 @@
         var p = parseInt(document.getElementById("protein-input").value)
         if (isNaN(p)) p = 0;
 
-        document.getElementById("kcals").innerHTML = 4*c + 9*f + 9*p
+        document.getElementById("kcals").innerHTML = 4*c + 9*f + 4*p
     }
 </script>
 
@@ -267,6 +267,14 @@
         <li><a href="/login">Log In</a></li>
         <li><a href="/register">Register</a></li>
       </ul>
+    </div>
+    <div style="width:800px">
+        m4cro is a free web application that helps you pick meals from restaurants
+        in your local area in order to stay in the confines of your diet. You simply
+        enter your desired macronutrient counts and our database and connected APIs
+        {# change later to be more specific #} will recommend a list of meals from
+        local resteraunts that fit your macros and give you estimated travel
+        times for pickup.
     </div>
     <div class="mdl-mini-footer__right-section">
       <a href="https://github.com/cbonesteel/m4cro"><img src="/static/GitHub-Mark-64px.png" alt="GitHub" height="30" width="30"></a>
