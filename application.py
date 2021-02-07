@@ -68,10 +68,17 @@ def page_not_found(error):
 
 
 def valid_login(username, password):
-    return False
+    
+    
 
 def valid_registration(username, password, firstname, lastname):
-    return False
+    mycursor = mydb.cursor()
+    checkUsername = mycursor.execute('SELECT username FROM Userdata.users WHERE username = % (username)s', (username,))
+    if checkUsername = 0
+    	return false
+    else
+    	Userdata.users[username] = [password, firstname, lastname]
+    	return true
 
 # city is a string, "Athens, GA" for example
 def get_restaurants_in_city(city):
