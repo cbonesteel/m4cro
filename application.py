@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
-import requests as req
 import re
 
 cloud_config = {
@@ -13,12 +12,12 @@ session = cluster.connect()
 
 print('Connected to DataStax')
 
-zomato_headers = {'Accept': 'application/json', 'user-key':'8b3dc6c1a42f7efdc2da8c6dab9f8778'}
 number = session.execute('select number from userdata.website where id = \'people\';').one()[0]
 
 app = Flask(__name__)
 
 @app.route('/')
+@app.route('/index')
 def index():
     global number
     number += 1
@@ -69,10 +68,9 @@ def page_not_found(error):
 
 def valid_login(email, password):
     global session
-    checkUser = len(session.execute('SELECT email FROM userdata.users WHERE email = {}'.format(email)))
-    checkPass = len(session.execute('SELECT password FROM userdata.users WHERE password = {}'.format(password)))
-    if checkUser != 0 && checkPass != 0:
-        return True
+    check = session.execute('SELECT password FROM userdata.users WHERE email = {}'.format(email)).one()
+    if check:
+        return check[0] == password
     return False
 
 def valid_registration(email, password, firstname, lastname):
@@ -85,21 +83,6 @@ def valid_registration(email, password, firstname, lastname):
 
 def user_login(email):
     pass
-
-# city is a string, "Athens, GA" for example
-def get_restaurants_in_city(city):
-    global zomato_headers
-    city_id = req.get('https://developers.zomato.com/api/v2.1/cities?q={}'.format(city), headers=zomato_headers).json()['location_suggestions'][0]['id']
-    restaurants = req.get('https://developers.zomato.com/api/v2.1/search?entity_id={}&entity_type=city'.format(city_id), headers=zomato_headers).json()['restaurants']
-    
-    # pertinent information for each restaurant: "name", "location", "menu_url"
-    return restaurants
-    
-def parse_menu(restaurant):
-    # download menu images
-    content = requests.get(restaurant.menu_url).content
-    menu_images = re.findall('https:\\/\\/b\\.zmtcdn\\.com\\/data\\/menus\\/[0-9]*\\/[0-9]*\\/.*?\\.(png|jpg|jpeg)', content)
-    # TODO: more stuff
 
 
 if __name__ == '__main__':
