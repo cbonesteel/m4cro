@@ -27,9 +27,14 @@ def get_restaurants_in_city(city):
     
 def parse_menu(restaurant):
     # download menu images
-    content = req.get(restaurant['menu_url']).text
+    haha_fake_header = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0',
+    }
+    content = req.get(restaurant['menu_url'], headers=haha_fake_header).text
     url_pattern = re.compile(r'https:\\/\\/b\\.zmtcdn\\.com\\/data\\/menus\\/[0-9]*\\/[0-9]*\\/.*?\\.(png|jpg|jpeg)')
     menu_urls = set(url_pattern.findall(content))
+    
+    print(content)
     
     # parse text in all the images
     menu_pages = []

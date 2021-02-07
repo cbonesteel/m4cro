@@ -117,7 +117,7 @@ def results():
         recommendations.sort(key=lambda x: x.cost(c,f,p))
     return render_template('results.html', recommendations=recommendations[:10])
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     error = None
     if request.method == 'POST':
