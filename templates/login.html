@@ -95,6 +95,18 @@
     top:50px
   }
 
+  
+  .mdl-textfield__error {
+    text-align: center;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+
   .bounding-box {
       margin: 0 auto;
       width: 640px;
@@ -104,6 +116,15 @@
       top:150px;
   }
 
+  .error-bounding-box {
+      margin: 0 auto;
+      width: 640px;
+      height: 50px;
+      text-align: justify;
+      position:relative;
+      top:10px;
+  }
+  
   .login-box {
       width: 300px;
       height:250px;
@@ -133,6 +154,13 @@
       top: 20px;
       font-size:35px;
       font-weight: lighter;
+  }
+
+   .mdl-chip {
+       position:relative;
+       background-color:#D1495B; 
+       left: 190px;
+       top: 145px;
   }
   
   .mdl-mini-footer {
@@ -167,21 +195,32 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
+    {% if error %}
+    <!-- Deletable Chip -->
+    <div class="error-bounding-box">
+      <span class="mdl-chip">
+        <span class="mdl-chip__text">Invalid username or password. Try Again.</span>
+      </span>
+    </div>
+    {% endif %}
     <div class="bounding-box">
-      <div class="mdl-card mdl-shadow--2dp login-box">
+      
+        <div class="mdl-card mdl-shadow--2dp login-box">
         <span class="unit-label">Login</span>
+
         <!-- Simple Textfield -->
         <form action="#">
           <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="email">
-            <label class="mdl-textfield__label" for="sample1">email</label>
+            <input class="mdl-textfield__input" type="email" id="email">
+            <label class="mdl-textfield__label" for="email">email</label>
+            <span class="mdl-textfield__error">Please enter a valid email address.</span>
           </div>
         </form>
         <!-- Simple Textfield -->
         <form action="#">
           <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="password">
-            <label class="mdl-textfield__label" for="sample1">password</label>
+            <input class="mdl-textfield__input" type="password" id="password">
+            <label class="mdl-textfield__label" for="password">password</label>
           </div>
         </form>
         
@@ -191,12 +230,9 @@
         </button>
 
       </div>
-    </div>"
-
-
-    
-    
+    </div>
   </main>
+
   
   <!-- Footer -->
   <footer class="mdl-mini-footer">
