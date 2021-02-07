@@ -204,16 +204,16 @@
         </div>
   <main class="mdl-layout__content">
     <div class="bounding-box">
-
+        
+        <form name="myForm" action="/results" method="post">
         <div class="mdl-card mdl-shadow--2dp carb-box">
-            <!-- Numeric Textfield -->
-            <form action="#">
+            <div>
                 <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="carb-input" onkeyup="calculateCalories()">
                 <label class="mdl-textfield__label" for="carb-input"></label>
                 <span class="mdl-textfield__error">Enter a Number</span>
                 </div>
-            </form>
+            </div>
 
             <span class="macro-label">Carbs</span>
             <span class="unit-label">g</span>
@@ -221,13 +221,13 @@
 
         <div class="mdl-card mdl-shadow--2dp fat-box">
             <!-- Numeric Textfield -->
-            <form action="#">
+            <div>
                 <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="fat-input" onkeyup="calculateCalories()">
                 <label class="mdl-textfield__label" for="fat-input"></label>
                 <span class="mdl-textfield__error">Enter a Number</span>
                 </div>
-            </form>
+            </div>
 
             <span class="macro-label">Fat</span>
             <span class="unit-label">g</span>
@@ -235,13 +235,13 @@
 
         <div class="mdl-card mdl-shadow--2dp protein-box">
             <!-- Numeric Textfield -->
-            <form action="#">
+            <div>
                 <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="protein-input" onkeyup="calculateCalories()">
                 <label class="mdl-textfield__label" for="protein-input"></label>
                 <span class="mdl-textfield__error">Enter a Number</span>
                 </div>
-            </form>
+            </div>
 
             <span class="macro-label">Protein</span>
             <span class="unit-label">g</span>
@@ -253,9 +253,10 @@
         </button>
         <br><br>
         <!-- Raised button with ripple -->
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit" onclick="document.myForm.submit()">
             <i class="material-icons">done</i>
         </button>
+        </form>
     </div>
   </main>
 

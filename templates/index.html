@@ -21,7 +21,56 @@
 </style>
 
 <script>
-  onscroll
+  animationhandler = function(){
+    window.setTimeout(function(){
+      document.getElementById("four").setAttribute('data-before', '');
+      document.getElementById("four").innerHTML="4 E"
+    }, 500)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="4 El"
+    }, 500+160)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="4 Ele"
+    }, 500+160*2)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="4 Elem"
+    }, 500+160*3)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="4 Eleme"
+    }, 500+160*4)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="4 Elemen"
+    }, 500+160*5)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="4 Element"
+    }, 500+160*6)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="4 Elements"
+    }, 500+160*7)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="Carbs"
+    }, 2000)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="Fats"
+    }, 2500)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="Protein"
+    }, 3000)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="Calories"
+    }, 3500)
+    window.setTimeout(function(){
+      document.getElementById("four").innerHTML="m4cro"
+    }, 4000)
+    
+  }
+
+  function bodyload() {
+    document.getElementById("four").setAttribute('data-before', '4');
+    if(navigator.userAgent.toLowerCase().indexOf('safari/') > -1){
+      document.querySelector(".other").addEventListener("animationstart", animationhandler, false)
+    }
+  }
 </script>
 
 <style>
@@ -179,15 +228,29 @@
     animation-duration: 0.5s;
     animation-name: second;
     animation-fill-mode: forwards;
+    -webkit-animation-delay: 4s;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-name: second;
+    -webkit-animation-fill-mode: forwards;
     position:relative;
   }
 
-  .third::before {
+  .other {
+    animation-delay: 4.5s;
+    animation-name: first;
+    animation-duration: 1s;
+  }
+
+  .third:before {
     animation-delay: 4.5s;
     animation-duration: 4s;
     animation-name: third;
     animation-fill-mode: forwards;
-    content: "4";
+    -webkit-animation-delay: 4.5s;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-name: third;
+    -webkit-animation-fill-mode: forwards;
+    content: attr(data-before);;
   }
   
 </style>
@@ -220,6 +283,7 @@
   <main class="mdl-layout__content">
     <br><br><br>
     <h1 style="text-align:center"><span class="first">Welcome to m</span><span class="third" id="four"></span><span class="first">cro!</span></h1>
+    <span class="other"></span>
     <h4 class="first" style="text-align:center">You are the {{ person_number }} person to view this website</h4>
     <h4 class="fifth" style="text-align:center;position:relative;top:-70px">The basic building blocks of your nutrition.</h4>
     <h5 class="sixth" style="text-align:center;position:relative;top:-70px">Register/Login, or start using m4cro as a guest.</h5>
@@ -259,7 +323,7 @@
     </div>
   </footer>
 </div>
-<body>
+<body onload="bodyload()">
   
 </body>
 

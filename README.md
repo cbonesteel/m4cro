@@ -14,6 +14,9 @@ and give you estimated travel times for pickup.
 
 TODO: Add Technical info here
 
+## Known Issues with Demo
+* Home Animation doesn't work on Safari
+
 ## Contributers
 * Cameron Bonesteel
 * Eric Miller

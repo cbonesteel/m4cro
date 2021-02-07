@@ -50,7 +50,7 @@ def index():
 def start(name=None):
     return render_template('start.html', display_name=name)
 
-@app.route('/results')
+@app.route('/results', methods=['POST', 'GET'])
 def results():
     recommendations = []
     recommendations.append(recommendation("McDonalds", "10 min", "Chicken", "50", "20", "30", "500"))
