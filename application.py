@@ -51,6 +51,10 @@ def index():
 def start():
     return render_template('start.html')
 
+@app.route('/aboutus')
+def aboutus():
+    return render_template('about.html')
+
 @app.route('/results')
 def results():
     recommendations = []
