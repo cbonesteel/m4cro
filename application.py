@@ -46,6 +46,7 @@ def index():
         person_number += 'th'
     return render_template('index.html', person_number=person_number)
 
+@app.route('/start')
 @app.route('/start/<name>')
 def start(name=None):
     return render_template('start.html', display_name=name)
