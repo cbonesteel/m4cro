@@ -2,16 +2,17 @@ from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 import requests as req
 
+import re
 import io
 import pytesseract
 from PIL import Image
 
-cloud_config = {
-    'secure_connect_bundle': './secure-connect-m4cro-database.zip'
-}
-auth_provider = PlainTextAuthProvider('m4cro', 'M@VnDu2D7#tc')
-cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
-session = cluster.connect()
+# cloud_config = {
+    # 'secure_connect_bundle': './secure-connect-m4cro-database.zip'
+# }
+# auth_provider = PlainTextAuthProvider('m4cro', 'M@VnDu2D7#tc')
+# cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
+# session = cluster.connect()
 
 zomato_headers = {'Accept': 'application/json', 'user-key':'8b3dc6c1a42f7efdc2da8c6dab9f8778'}
 
@@ -26,21 +27,27 @@ def get_restaurants_in_city(city):
     
 def parse_menu(restaurant):
     # download menu images
-    content = requests.get(restaurant.menu_url).content
-    menu_images = re.findall('https:\\/\\/b\\.zmtcdn\\.com\\/data\\/menus\\/[0-9]*\\/[0-9]*\\/.*?\\.(png|jpg|jpeg)', content)
-    # TODO: more stuff
+    content = req.get(restaurant['menu_url']).text
+    url_pattern = re.compile(r'https:\\/\\/b\\.zmtcdn\\.com\\/data\\/menus\\/[0-9]*\\/[0-9]*\\/.*?\\.(png|jpg|jpeg)')
+    menu_urls = set(url_pattern.findall(content))
+    
+    # parse text in all the images
+    menu_pages = []
+    for menu_url in menu_urls:
+        resp = req.get(menu_url)
+        img = Image.open(io.BytesIO(resp.content))
+        text = pytesseract.image_to_string(img)
+        menu_pages.append(text)
+    
+    # list of OCRed strings
+    return menu_pages
     
 
 def fill_database():
-    restaurants = [
-        # { "name": string, "website": string, "latitude": float, "longitude": float, "items": [
-        #   { "name": string, "carbs": float, "fat": float, "protein": float }
-        # ] }
-    ]
-    
     # get restaurants in athens
     rests = get_restaurants_in_city('Athens, GA')
     for rest in rests:
+        rest = rest['restaurant']
         items = []
         obj = {
             'name': rest['name'],
@@ -49,15 +56,20 @@ def fill_database():
             'longitude': float(rest['location']['longitude']),
             'items': items
         }
-        restaurants.append(obj)
         
+        # parse the menu
+        pages = parse_menu(rest)
+        
+        print(obj['name'])
+        print(pages)
+        print('----------------------------\n')
+        
+        # nutrition for each menu item
+        pass
+        # throw the restaurant into the database
+        pass
     
-    # parse the menu
-    
-    
-    # throw the restaurants into the database
-    
-    pass
+    # done :)
 
 if __name__ == '__main__':
     fill_database()

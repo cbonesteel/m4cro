@@ -79,7 +79,7 @@ def register():
         if valid_registration(request.form['email'], request.form['password'], request.form['firstname'], request.form['lastname']):
             return user_login(request.form['email'])
         else:
-            error = 'Email already taken. Please use another email.'
+            error = 'Email already in use. Please use another email.'
     return render_template('register.html', error=error)
 
 @app.errorhandler(404)
@@ -95,9 +95,9 @@ def valid_login(email, password):
 
 def valid_registration(email, password, firstname, lastname):
     global session
-    checkEmail = len(session.execute('SELECT email FROM userdata.users WHERE email = \'{}\''.format(email)))
-    if checkEmail != 0:
-        session.execute('insert into userdata.users (email, password, firstname, lastname) values (\'{}\', \'{}\', \'{}\', \'{}\');'.format(username, password, firstname, lastname))
+    checkEmail = session.execute('SELECT email FROM userdata.users WHERE email = \'{}\''.format(email)).one()
+    if not checkEmail:
+        session.execute('insert into userdata.users (email, password, firstname, lastname) values (\'{}\', \'{}\', \'{}\', \'{}\');'.format(email, password, firstname, lastname))
         return True
     return False
 

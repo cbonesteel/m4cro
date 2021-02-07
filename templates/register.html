@@ -199,9 +199,9 @@
         <div class="mdl-card mdl-shadow--2dp register-box">
         <span class="unit-label">Register</span>
         <!-- Simple Textfield -->
-        <form action="#">
+        <form action="/register" method="post">
           <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="firstname" required="true">
+            <input class="mdl-textfield__input" type="text" id="firstname" name="firstname" required="true">
             <label class="mdl-textfield__label" for="email">First Name</label>
             <span class="mdl-textfield__error">This field is required.</span>
           </div>
@@ -209,7 +209,7 @@
         <!-- Simple Textfield -->
         
           <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="lastname" required="true">
+            <input class="mdl-textfield__input" type="text" id="lastname" name="lastname" required="true">
             <label class="mdl-textfield__label" for="email">Last Name</label>
             <span class="mdl-textfield__error">This field is required.</span>
           </div>
@@ -217,7 +217,7 @@
         <!-- Simple Textfield -->
         
           <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="email" id="register_email" required="true">
+            <input class="mdl-textfield__input" type="email" id="register_email" name="email" required="true">
             <label class="mdl-textfield__label" for="email">Email</label>
             <span class="mdl-textfield__error">Please enter a valid email address.</span>
           </div>
@@ -225,7 +225,7 @@
         <!-- Simple Textfield -->
         
           <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="password" id="register_password" required="true">
+            <input class="mdl-textfield__input" type="password" id="register_password" name="password" required="true">
             <label class="mdl-textfield__label" for="password">Password</label>
             <span class="mdl-textfield__error">This field is required.</span>
           </div>
