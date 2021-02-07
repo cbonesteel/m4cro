@@ -72,4 +72,6 @@ We are already working on a few ideas for the future:
 
 <small>
 m4cro http://m4cro.space
+
+Icons made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
 </small>
