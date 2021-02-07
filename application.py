@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
+import requests as req
 import re
 
 class recommendation:
@@ -26,8 +27,6 @@ number = session.execute('select number from userdata.website where id = \'peopl
 
 app = Flask(__name__)
 
-displayName = 'guest'
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -47,28 +46,27 @@ def index():
         person_number += 'th'
     return render_template('index.html', person_number=person_number)
 
-@app.route('/start')
-def start():
-    return render_template('start.html')
+@app.route('/start/<name>')
+def start(name=None):
+    return render_template('start.html', display_name=name)
 
 @app.route('/aboutus')
 def aboutus():
     return render_template('about.html')
 
-@app.route('/results')
+@app.route('/results', methods=['POST', 'GET'])
+
 def results():
     recommendations = []
     recommendations.append(recommendation("McDonalds", "10 min", "Chicken", "50", "20", "30", "500"))
     recommendations.append(recommendation("Burger King", "10 min", "Other Chicken", "40", "30", "28", "542"))
     return render_template('results.html', recommendations=recommendations)
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
         if valid_login(request.form['email'], request.form['password']):
-            set = session.execute('SELECT firstname FROM userdata.users WHERE email = {}'.format(email)).one()
-            displayName = set[0]
             return user_login(request.form['email'])
         else:
             error = 'Invalid email/password'
@@ -90,20 +88,33 @@ def page_not_found(error):
 
 def valid_login(email, password):
     global session
-    check = session.execute('SELECT password FROM userdata.users WHERE email = {}'.format(email)).one()
+    check = session.execute('SELECT password FROM userdata.users WHERE email = \'{}\''.format(email)).one()
     if check:
         return check[0] == password
     return False
 
 def valid_registration(email, password, firstname, lastname):
     global session
-    checkEmail = len(session.execute('SELECT email FROM userdata.users WHERE email = {}'.format(email)))
+    checkEmail = len(session.execute('SELECT email FROM userdata.users WHERE email = \'{}\''.format(email)))
     if checkEmail != 0:
         session.execute('insert into userdata.users (email, password, firstname, lastname) values (\'{}\', \'{}\', \'{}\', \'{}\');'.format(username, password, firstname, lastname))
         return True
     return False
 
 def user_login(email):
+    set = session.execute('SELECT firstname FROM userdata.users WHERE email = \'{}\''.format(email)).one()
+    return redirect(url_for('start', name=set[0]))
+
+def get_distance(latitude, longitude):
+    # get user location
+    # TODO
+    
+    # throw into radar.io request (see https://radar.io/documentation/api#distance)
+    radar_header = { 'Authorization': 'prj_test_sk_1390526d2da070f76d1b9420976d91119fea3158' }
+    data = req.get('https://api.radar.io/v1/route/distance?origin={},{}&destination={},{}&modes=foot,car&units=imperial', header=radar_header).json()
+    
+    # do stuff with data
+    # TODO
     pass
 
 if __name__ == '__main__':
