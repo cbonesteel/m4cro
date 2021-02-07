@@ -9,7 +9,7 @@ Made at UGAHacks6
 m4cro is a free web application that helps you pick meals from restaurants
 in your local area in order to stay in the confines of your diet. You simply
 enter your desired macronutrient counts and our database and connected APIs
-will recommend a list of meals from local resteraunts that fit your macros
+will recommend a list of meals from local restaurants that fit your macros
 and give you estimated travel times for pickup.
 
 ## Inspiration
