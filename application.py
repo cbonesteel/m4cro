@@ -13,6 +13,9 @@ class recommendation:
         self.protein = protein
         self.kcals = kcals
 
+    def cost(self, c, f, p):
+        return (int(self.carbs)-c)**2 + (int(self.fat)-f)**2 + (int(self.protein)-p)**2 + (int(self.travel_time.split(' ')[0]))**2
+
 cloud_config = {
     'secure_connect_bundle': './secure-connect-m4cro-database.zip'
 }
@@ -54,9 +57,60 @@ def start():
 @app.route('/results', methods=['POST', 'GET'])
 def results():
     recommendations = []
-    recommendations.append(recommendation("McDonalds", "10 min", "Chicken", "50", "20", "30", "500"))
-    recommendations.append(recommendation("Burger King", "10 min", "Other Chicken", "40", "30", "28", "542"))
-    return render_template('results.html', recommendations=recommendations)
+
+    if request.method == 'POST':
+        c = int(request.form['carb-input']) if request.form['carb-input'].isnumeric() else 0
+        f = int(request.form['fat-input']) if request.form['fat-input'].isnumeric() else 0
+        p = int(request.form['protein-input']) if request.form['protein-input'].isnumeric() else 0
+        recommendations.append(recommendation("McDonalds", "5 min", "Big Mac", "45", "30", "25", "550"))
+        recommendations.append(recommendation("McDonalds", "5 min", "10pc Chicken McNuggets", "25", "25", "23", "420"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Chicken Kabob", "45", "20", "44", "510"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Chicken Rollups", "85", "29", "43", "780"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Chicken Salad Sandwich", "77", "54", "38", "920"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Falafel Pita", "98", "26", "20", "680"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Greek Chicken Pita", "74", "23", "48", "680"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Spicy Chicken Kabobs", "40", "21", "44", "530"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Steak Kabob", "42", "25", "44", "690"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Steak Pita", "56", "35", "34", "740"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Steak Rollup", "86", "48", "46", "940"))
+        recommendations.append(recommendation("Zoe's Kitchen", "15 min", "Turkey Avocado Sandwich", "87", "20", "36", "650"))
+        recommendations.append(recommendation("Chick-Fil-A", "7 min", "Chicken Biscuit", "50", "21", "17", "450"))
+        recommendations.append(recommendation("Chick-Fil-A", "7 min", "Sausage, Egg & Cheese Biscuit", "41", "40", "20", "600"))
+        recommendations.append(recommendation("Chick-Fil-A", "7 min", "Chicken Sandwich", "40", "19", "28", "440"))
+        recommendations.append(recommendation("Chick-Fil-A", "7 min", "Spicy Chicken Sandwich", "41", "19", "29", "450"))
+        recommendations.append(recommendation("Chick-Fil-A", "7 min", "Nuggets (8-count)", "9", "12", "28", "260"))
+        recommendations.append(recommendation("Chick-Fil-A", "7 min", "Nuggets (12-count)", "14", "18", "41", "390"))
+        recommendations.append(recommendation("Chick-Fil-A", "7 min", "Grilled Chicken Cool Wrap", "29", "14", "37", "350"))
+        recommendations.append(recommendation("Chick-Fil-A", "7 min", "Cobb Salad w/Toppings", "37", "19", "34", "450"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Bacon Club Chalupa", "31", "27", "20", "440"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Beef Quesarito", "67", "33", "22", "650"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Beefy 5-Layer Burrito", "63", "18", "18", "490"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Black Bean Chalupa", "39", "15", "10", "330"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Black Bean Crunchwrap Supreme", "77", "17", "13", "510"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Black Beans and Rice", "31", "3", "4", "170"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Breakfast Crunchwrap", "51", "47", "21", "720"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Burrito Supreme- Steak", "49", "12", "18", "370"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Burrito Supreme- Beef", "51", "14", "16", "390"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Burrito Supreme- Chicken", "49", "11", "19", "370"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Cheese Quesadilla", "37", "25", "19", "470"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Hash Brown Toasted Breakfast Burrito - Sausage", "49", "34", "18", "570"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Power Menu Bowl- Steak", "51", "20", "25", "490"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Quesarito- Speacialties", "67", "33", "22", "650"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Chicken Quesarito", "66", "29", "25", "620"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Soft Taco Supreme- Beef", "20", "10", "10", "210"))
+        recommendations.append(recommendation("Taco Bell", "5 min", "Soft Taco Supreme- Chicken", "18", "7", "13", "180"))
+        recommendations.append(recommendation("Red Lobster", "20 min", "6oz Filet Mingnon", "26", "23", "38", "460"))
+        recommendations.append(recommendation("Red Lobster", "20 min", "7oz Sirloin", "26", "22", "45", "480"))
+        recommendations.append(recommendation("Red Lobster", "20 min", "Admirals Feast", "129", "98", "64", "1650"))
+        recommendations.append(recommendation("Red Lobster", "20 min", "Bar Harbor Lobster Bake", "106", "56", "76", "1250"))
+        recommendations.append(recommendation("Red Lobster", "20 min", "Classic Ceaser Salad", "18", "46", "10", "520"))
+        recommendations.append(recommendation("Red Lobster", "20 min", "Crab-Stuffed Shrimp Rangoon", "48", "45", "15", "660"))
+        recommendations.append(recommendation("Red Lobster", "20 min", "Garlic Linguini Alfredo with Cajun Chicken", "116", "60", "81", "1340"))
+        recommendations.append(recommendation("Red Lobster", "20 min", "Hand Breaded Calamari", "63", "65","44","1010"))
+        recommendations.append(recommendation("Red Lobster", "20 min", "Lobster and Langostino Pizza", "59", "35", "39", "700"))
+
+        recommendations.sort(key=lambda x: x.cost(c,f,p))
+    return render_template('results.html', recommendations=recommendations[:10])
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
