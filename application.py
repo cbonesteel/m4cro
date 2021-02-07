@@ -3,6 +3,16 @@ from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 import re
 
+class recommendation:
+    def __init__(self, restaurant, travel_time, meal, carbs, fat, protein, kcals):
+        self.restaurant = restaurant
+        self.travel_time = travel_time
+        self.meal = meal
+        self.carbs = carbs
+        self.fat = fat
+        self.protein = protein
+        self.kcals = kcals
+
 cloud_config = {
     'secure_connect_bundle': './secure-connect-m4cro-database.zip'
 }
@@ -39,6 +49,12 @@ def index():
 def start():
     return render_template('start.html')
 
+@app.route('/results')
+def results():
+    recommendations = []
+    recommendations.append(recommendation("McDonalds", "10 min", "Chicken", "50", "20", "30", "500"))
+    recommendations.append(recommendation("Burger King", "10 min", "Other Chicken", "40", "30", "28", "542"))
+    return render_template('results.html', recommendations=recommendations)
     
 @app.route('/login', methods=['POST', 'GET'])
 def login():

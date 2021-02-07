@@ -20,21 +20,6 @@
 }
 </style>
 
-<script>
-    function calculateCalories() {
-        var c = parseInt(document.getElementById("carb-input").value)
-        if (isNaN(c)) c = 0;
-        
-        var f = parseInt(document.getElementById("fat-input").value)
-        if (isNaN(f)) f = 0;
-
-        var p = parseInt(document.getElementById("protein-input").value)
-        if (isNaN(p)) p = 0;
-
-        document.getElementById("kcals").innerHTML = 4*c + 9*f + 4*p
-    }
-</script>
-
 <style>
   body {
     background-color: black;
@@ -97,6 +82,14 @@
       text-align: justify;
       position:relative;
       top:200px;
+  }
+
+  .recs {
+    margin: 0 auto;
+    width: 800px;
+    position: relative;
+    top: 100px;
+    color: #333;
   }
 
   .carb-box {
@@ -194,7 +187,7 @@
         </div>
         </header>
         <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">m4cro</span>
+        <span class="mdl-layout-title">Title</span>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="/">Home</a>
             <a class="mdl-navigation__link" href="/start">Start</a>
@@ -203,60 +196,33 @@
         </nav>
         </div>
   <main class="mdl-layout__content">
-    <div class="bounding-box">
 
-        <div class="mdl-card mdl-shadow--2dp carb-box">
-            <!-- Numeric Textfield -->
-            <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="carb-input" onkeyup="calculateCalories()">
-                <label class="mdl-textfield__label" for="carb-input"></label>
-                <span class="mdl-textfield__error">Enter a Number</span>
-                </div>
-            </form>
-
-            <span class="macro-label">Carbs</span>
-            <span class="unit-label">g</span>
-        </div>
-
-        <div class="mdl-card mdl-shadow--2dp fat-box">
-            <!-- Numeric Textfield -->
-            <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="fat-input" onkeyup="calculateCalories()">
-                <label class="mdl-textfield__label" for="fat-input"></label>
-                <span class="mdl-textfield__error">Enter a Number</span>
-                </div>
-            </form>
-
-            <span class="macro-label">Fat</span>
-            <span class="unit-label">g</span>
-        </div>
-
-        <div class="mdl-card mdl-shadow--2dp protein-box">
-            <!-- Numeric Textfield -->
-            <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="protein-input" onkeyup="calculateCalories()">
-                <label class="mdl-textfield__label" for="protein-input"></label>
-                <span class="mdl-textfield__error">Enter a Number</span>
-                </div>
-            </form>
-
-            <span class="macro-label">Protein</span>
-            <span class="unit-label">g</span>
-        </div>
-
-        <!-- Raised button with ripple -->
-        <button class="mdl-button mdl-js-button mdl-shadow--2dp" id="calories" disabled>
-            Total Calories: <span id="kcals">0</span>
-        </button>
-        <br><br>
-        <!-- Raised button with ripple -->
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit">
-            <i class="material-icons">done</i>
-        </button>
-    </div>
+    <table class="recs mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+            <th class="mdl-data-table__cell--non-numeric">Meal</th>
+            <th class="mdl-data-table__cell--non-numeric">Restaurant</th>
+            <th class="mdl-data-table__cell--non-numeric">Travel Time</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Protein</th>
+            <th>Calories</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for recommendation in recommendations%}
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">{{ recommendation.meal }}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{ recommendation.restaurant }}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{ recommendation.travel_time }}</td>
+                <td>{{recommendation.carbs}}</td>
+                <td>{{recommendation.fat}}</td>
+                <td>{{recommendation.protein}}</td>
+                <td>{{recommendation.kcals}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
   </main>
 
   <!-- Footer -->
@@ -282,7 +248,6 @@
     </div>
   </footer>
 </div>
-<body onload="calculateCalories()">
   
 </body>
 
