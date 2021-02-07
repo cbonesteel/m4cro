@@ -4,6 +4,16 @@ from cassandra.auth import PlainTextAuthProvider
 import requests as req
 import re
 
+class recommendation:
+    def __init__(self, restaurant, travel_time, meal, carbs, fat, protein, kcals):
+        self.restaurant = restaurant
+        self.travel_time = travel_time
+        self.meal = meal
+        self.carbs = carbs
+        self.fat = fat
+        self.protein = protein
+        self.kcals = kcals
+
 cloud_config = {
     'secure_connect_bundle': './secure-connect-m4cro-database.zip'
 }
@@ -40,6 +50,12 @@ def index():
 def start():
     return render_template('start.html')
 
+@app.route('/results')
+def results():
+    recommendations = []
+    recommendations.append(recommendation("McDonalds", "10 min", "Chicken", "50", "20", "30", "500"))
+    recommendations.append(recommendation("Burger King", "10 min", "Other Chicken", "40", "30", "28", "542"))
+    return render_template('results.html', recommendations=recommendations)
     
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -71,7 +87,7 @@ def valid_login(email, password):
     global session
     checkUser = len(session.execute('SELECT email FROM userdata.users WHERE email = {}'.format(email)))
     checkPass = len(session.execute('SELECT password FROM userdata.users WHERE password = {}'.format(password)))
-    if checkUser != 0 && checkPass != 0:
+    if checkUser != 0 and checkPass != 0:
         return True
     return False
 
