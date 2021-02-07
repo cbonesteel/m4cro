@@ -128,7 +128,7 @@
   #submit {
       position: relative;
       top:15px;
-      width: 607px;
+      width: 640px;
       color: white;
       background-color:#D1495B; 
       margin-left:auto;
@@ -205,9 +205,8 @@
   <main class="mdl-layout__content">
     <div class="bounding-box">
         
-
+        <form name="myForm" action="/results" method="post">
         <div class="mdl-card mdl-shadow--2dp carb-box">
-            <form id="start-form">
             <div>
                 <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="carb-input" onkeyup="calculateCalories()">
@@ -246,7 +245,6 @@
 
             <span class="macro-label">Protein</span>
             <span class="unit-label">g</span>
-        </form>
         </div>
 
         <!-- Raised button with ripple -->
@@ -255,9 +253,10 @@
         </button>
         <br><br>
         <!-- Raised button with ripple -->
-        <submit class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit" onclick="document.myForm.submit()">
             <i class="material-icons">done</i>
-        </submit>
+        </button>
+        </form>
     </div>
   </main>
 
