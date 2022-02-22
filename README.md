@@ -1,8 +1,15 @@
 # m4cro
 
-Carbs. Fat. Protein. Calories.
+![hackathon](https://img.shields.io/badge/hackathon-UGAHacks6-lightgrey)
+![lines](https://img.shields.io/tokei/lines/github/cbonesteel/m4cro)
+![size](https://img.shields.io/github/repo-size/cbonesteel/m4cro)
+![issues](https://img.shields.io/github/issues-raw/cbonesteel/m4cro)
 
 Made at UGAHacks6
+
+![UGAHacks6 Winner](https://img.shields.io/badge/UGAHacks6%20Winner-Best%20Domain%20Name-brightgreen)
+
+Carbs. Fat. Protein. Calories.
 
 ## About
 
@@ -63,15 +70,19 @@ We are already working on a few ideas for the future:
 
 ## Contributors
 
-* Cameron Bonesteel
-* Eric Miller
-* Evan Tichenor
-* Lydia Williams
+* [Cameron Bonesteel](https://www.linkedin.com/in/cbonesteel/)
+* [Eric Miller](https://www.linkedin.com/in/eric-n-miller/)
+* [Evan Tichenor](https://www.linkedin.com/in/evan-tichenor/)
+* [Lydia Williams](https://www.linkedin.com/in/lydnicwil/)
 
 <hr/>
 
 <small>
-m4cro http://m4cro.space
+<p>
+m4cro <a href="http://m4cro.space">http://m4cro.space</a>
+
+UGAHacks6 <a href="https://devpost.com/software/m4cro">Devpost</a>
 
 Icons made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+</p>
 </small>
